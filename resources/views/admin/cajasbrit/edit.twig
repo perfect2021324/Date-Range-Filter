@@ -1,0 +1,138 @@
+
+{% extends "layouts/app.twig" %}
+{% block title %}{{ lang.edit }} {{ lang.cajasbrit }}{% endblock %}
+{% block content %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3"><a href="{{route('cajasbrit.index')}}" class="text-dark">{{ lang.cajasbrit }}</a></div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ lang.update }} {{ lang.cajasbrit }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-primary btn-sm" href="{{route('cajasbrit.index')}}"><i class="bi bi-reply font16"></i> {{ lang.go_back }}</a>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-xl-7 mx-auto">
+                    {% include'partials/flash.twig' %}
+                    <div class="card border shadow-none">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="post" action="{{ route('cajasbrit.update') }}" enctype="multipart/form-data">
+                                {{ csrf.field | raw }}
+                             <input type="hidden" name="id" value="{{ cajasbrit.id}}">
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_barra">{{ lang.cajasbrit_cb_barra }}</label>
+	                             <input id="cb_barra" name="cb_barra" class="form-control {{ errors.cb_barra ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_barra}}" />
+                                {% if errors.cb_barra %}
+                                   <div class="invalid-feedback">{{ errors.cb_barra | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_fecha">{{ lang.cajasbrit_cb_fecha }}</label>
+	                             <input id="cb_fecha" name="cb_fecha" type="text" class="date form-control {{ errors.cb_fecha ? ' is-invalid' : '' }}" value="{{cajasbrit.cb_fecha}}" />
+                                {% if errors.cb_fecha %}
+                                   <div class="invalid-feedback">{{ errors.cb_fecha | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_cambio">{{ lang.cajasbrit_cb_cambio }}</label>
+	                             <input id="cb_cambio" name="cb_cambio" class="form-control {{ errors.cb_cambio ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_cambio}}" />
+                                {% if errors.cb_cambio %}
+                                   <div class="invalid-feedback">{{ errors.cb_cambio | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_efectivo">{{ lang.cajasbrit_cb_efectivo }}</label>
+	                             <input id="cb_efectivo" name="cb_efectivo" class="form-control {{ errors.cb_efectivo ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_efectivo}}" />
+                                {% if errors.cb_efectivo %}
+                                   <div class="invalid-feedback">{{ errors.cb_efectivo | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_tarjeta">{{ lang.cajasbrit_cb_tarjeta }}</label>
+	                             <input id="cb_tarjeta" name="cb_tarjeta" class="form-control {{ errors.cb_tarjeta ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_tarjeta}}" />
+                                {% if errors.cb_tarjeta %}
+                                   <div class="invalid-feedback">{{ errors.cb_tarjeta | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_total">{{ lang.cajasbrit_cb_total }}</label>
+	                             <input id="cb_total" name="cb_total" class="form-control {{ errors.cb_total ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_total}}" />
+                                {% if errors.cb_total %}
+                                   <div class="invalid-feedback">{{ errors.cb_total | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_efectivoz">{{ lang.cajasbrit_cb_efectivoz }}</label>
+	                             <input id="cb_efectivoz" name="cb_efectivoz" class="form-control {{ errors.cb_efectivoz ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_efectivoz}}" />
+                                {% if errors.cb_efectivoz %}
+                                   <div class="invalid-feedback">{{ errors.cb_efectivoz | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_tarjetaz">{{ lang.cajasbrit_cb_tarjetaz }}</label>
+	                             <input id="cb_tarjetaz" name="cb_tarjetaz" class="form-control {{ errors.cb_tarjetaz ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_tarjetaz}}" />
+                                {% if errors.cb_tarjetaz %}
+                                   <div class="invalid-feedback">{{ errors.cb_tarjetaz | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_totalz">{{ lang.cajasbrit_cb_totalz }}</label>
+	                             <input id="cb_totalz" name="cb_totalz" class="form-control {{ errors.cb_totalz ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_totalz}}" />
+                                {% if errors.cb_totalz %}
+                                   <div class="invalid-feedback">{{ errors.cb_totalz | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_diferencia">{{ lang.cajasbrit_cb_diferencia }}</label>
+	                             <input id="cb_diferencia" name="cb_diferencia" class="form-control {{ errors.cb_diferencia ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_diferencia}}" />
+                                {% if errors.cb_diferencia %}
+                                   <div class="invalid-feedback">{{ errors.cb_diferencia | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_anticipada">{{ lang.cajasbrit_cb_anticipada }}</label>
+	                             <input id="cb_anticipada" name="cb_anticipada" class="form-control {{ errors.cb_anticipada ? ' is-invalid' : '' }}" type="text" maxlength="50"  value="{{cajasbrit.cb_anticipada}}" />
+                                {% if errors.cb_anticipada %}
+                                   <div class="invalid-feedback">{{ errors.cb_anticipada | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label" for="cb_camareros">{{ lang.cajasbrit_cb_camareros }}</label>
+	                             <input id="cb_camareros" name="cb_camareros" class="form-control {{ errors.cb_camareros ? ' is-invalid' : '' }}" type="text" maxlength="200"  value="{{cajasbrit.cb_camareros}}" />
+                                {% if errors.cb_camareros %}
+                                   <div class="invalid-feedback">{{ errors.cb_camareros | first }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary px-5" name="btn-update">
+                                   {{ lang.update }}
+                                </button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport,robots" content="width=device-width,user-scalable=no,noindex">
+<title>DUX CORUÑA S.L</title>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+<link rel="stylesheet" href="icons.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	
+	<div id="content">
+
+		<center><img src="images/my.png" height="70%"></center>
+		
+		<h1 class="text-center">CAJAS MY</h1>
+
+		<div class="separator"></div>
+
+
+		<h2 class="text-center">Rellena los campos</h2>
+
+		<div id="message-send"></div>
+
+		<div class="container">
+		  <form action="send.php" method="post" id="contact-form">
+		  	<ul>
+		  		<li>
+		  			<label for="date"><span aria-hidden="true" class="icon_calendar"></span> Fecha</label>
+		    		<input type="date" id="date" name="date" placeholder="Date" required>
+		  		</li>
+		  		<br>
+		  		<br>
+		  		<li>
+		  			<label for="barra"><span aria-hidden="true" class="icon_datareport"></span> Barra</label>
+		    		<input type="text" id="barra" name="barra" placeholder="Barra" required>
+		  		</li>
+		  		<br>
+		  		<li>
+		  			<label for="cambio"><span aria-hidden="true" class="icon_currency"></span> Cambio</label>
+		    		<input type="text" id="cambio" name="cambio" placeholder="Cambio" required>
+		  		</li>
+		  		<li>
+		  			<label for="efectivo"><span aria-hidden="true" class="icon_currency_alt"></span> Efectivo</label>
+		    		<input type="text" id="efectivo" name="efectivo" placeholder="Efectivo" value="0" required onkeyup="sum()">
+		  		</li>
+		  		<li>
+		  			<label for="tarjeta"><span aria-hidden="true" class="icon_currency_alt"></span> Tarjeta</label>
+		    		<input type="text" id="tarjeta" name="tarjeta" placeholder="Tarjeta" value="0" required onkeyup="sum()"> 
+		  		</li>
+		  		<li>
+		  			<label for="total"><span aria-hidden="true" class="icon_currency_alt"></span> Total</label>
+		    		<input type="text" id="total" name="total" placeholder="Total" required disabled>
+		  		</li>
+		  		<br>
+		  		<br>
+
+		  		<li>
+		  			<label for="efectivoz"><span aria-hidden="true" class="icon_currency"></span> Efectivo Z</label>
+		    		<input type="text" id="efectivoz" name="efectivoz" placeholder="Efectivo Z" value="0" required onkeyup="sum()">
+		  		</li>
+		  		<li>
+		  			<label for="tarjetaz"><span aria-hidden="true" class="icon_currency_alt"></span> Tarjeta Z</label>
+		    		<input type="text" id="tarjetaz" name="tarjetaz" placeholder="Tarjeta Z" value="0" required onkeyup="sumz()"> 
+		  		</li>
+		  		<li>
+		  			<label for="totalz"><span aria-hidden="true" class="icon_currency_alt"></span> Total Z</label>
+		    		<input type="text" id="totalz" name="totalz" placeholder="Total Z" required  disabled dif()> 
+		  		</li>
+		  		<br>
+		  		<br>
+		  		<li>
+		  			<label for="diferencia"><span aria-hidden="true" class="icon_currency_alt"></span> Diferencia</label>
+		    		<input type="text" id="diferencia" name="diferencia" placeholder="Diferencia" required disabled>
+		  		</li>
+		  		<br>
+		  		<br>
+		  		<li>
+		  			<label for="camareros"><span aria-hidden="true" class="icon_comment"></span> Camareros</label>
+		    		<textarea name="camareros" id="camareros" cols="30" rows="10" placeholder="Camareros" required></textarea>
+		  		</li>
+		  		<li class="canvas-section">
+		  			<label for="canvas"><span aria-hidden="true" class="icon_pencil-edit"></span> Firma <small>(dibuja tu firma)</small></label>
+		  			<div class="show-canvas">
+		  				<canvas id="canvas"></canvas>
+		  				<input type="hidden" name="firma" id="signature-input">
+		  			</div>
+		  			<div class="canvas-bottom">
+		  				<button type="button" class="btn btn-reset"><span aria-hidden="true" class="icon_refresh"></span> Rehacer</button> <button type="button" id="save_canvas" class="btn btn-save" id="save"><span aria-hidden="true" class="icon_check_alt2"></span> Guardar</button>
+		  			</div>
+		  		</li>
+		  	</ul>
+		    <div class="text-center submit-form"></div>
+		  </form>
+		</div>
+
+	</div><!-- /content -->
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<script src="js/signature.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+document.getElementById('efectivo').value = '0';
+document.getElementById('tarjeta').value = '0';
+</script>
+
+   <script type="text/javascript">
+document.getElementById('efectivoz').value = '0';
+document.getElementById('tarjetaz').value = '0';
+</script>
+
+
+    <script type="text/javascript">
+        function sum() {
+            var efectivo = document.getElementById('efectivo').value;
+            var tarjeta = document.getElementById('tarjeta').value;
+            var result = parseInt(efectivo) + parseInt(tarjeta);
+            if (!isNaN(result)) {
+                document.getElementById('total').value = result;
+            }
+        }
+          </script>
+<script type="text/javascript">
+          function sumz() {
+            var efectivoz = document.getElementById('efectivoz').value;
+            var tarjetaz = document.getElementById('tarjetaz').value;
+            var resulta = parseInt(efectivoz) + parseInt(tarjetaz);
+            if (!isNaN(resulta)) {
+                document.getElementById('totalz').value = resulta;
+            }
+            document.getElementById('diferencia').value = tot;
+        }
+    </script>
+
+   
+
+</body>
+</html>

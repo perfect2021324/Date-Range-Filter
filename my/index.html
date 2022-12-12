@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<title>DUX CORUÑA S.L</title>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+<link rel="stylesheet" href="icons.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	
+	<div id="content">
+
+		<center><img src="images/my.png" height="70%"></center>
+		
+		<h1 class="text-center">CAJAS MY</h1>
+
+		<div class="separator"></div>
+
+
+		<h2 class="text-center">Rellena los campos</h2>
+
+		<div id="message-send"></div>
+
+		<div class="container">
+		  <form action="send.php" method="post" id="contact-form">
+		  	<ul>
+		  		<li>
+		  			<label for="date"><span aria-hidden="true" class="icon_calendar"></span> Fecha</label>
+		    		<input type="date" id="date" name="date" placeholder="Date" required>
+		  		</li>
+		  		<br>
+		  		<br>
+		  		<li>
+		  			<label for="barra"><span aria-hidden="true" class="icon_datareport"></span> Barra</label>
+		  			<select id="barra" name="barra">
+		  				<option disabled selected value> -- selecciona una bara -- </option>
+		  				<option value="My1">My 1</option>
+		  				<option value="My2">My2</option>
+		  				<option value="Visionnaire">Visionnaire</option>
+		  				<option value="Reservados">Reservados</option>
+		  				<option value="Cafeteria">Cafetería</option>
+		  				<option value="Taquilla">Taquilla</option>
+		  			</select>
+		    		<!-- <input type="text" id="barra" name="barra" placeholder="Barra" required> -->
+		  		</li>
+		  		<br>
+		  		<li>
+		  			<label for="cambio"><span aria-hidden="true" class="icon_currency"></span> Fondo de Caja</label>
+		    		<input type="text" id="cambio" name="cambio" placeholder="Cambio" required>
+		  		</li>
+		  		<li>
+		  			<label for="efectivo"><span aria-hidden="true" class="icon_currency_alt"></span> Efectivo</label>
+		    		<input type="text" id="efectivo" name="efectivo" placeholder="Efectivo" onblur="this.value = 'Php ' + formatNumber(this.value)" value="0" required onkeyup="sum(); final()">
+		  		</li>
+		  		<li>
+		  			<label for="tarjeta"><span aria-hidden="true" class="icon_currency_alt"></span> Tarjeta</label>
+		    		<input type="text" id="tarjeta" name="tarjeta" placeholder="Tarjeta" value="0" required onkeyup="sum(); final()"> 
+		  		</li>
+		  		<li>
+		  			<label for="total"><span aria-hidden="true" class="icon_currency_alt"></span> Total</label>
+		    		<input type="text" id="total" name="total" placeholder="Total" required readonly>
+		  		</li>
+		  		<br>
+		  		<br>
+
+		  		<li>
+		  			<label for="efectivoz"><span aria-hidden="true" class="icon_currency"></span> Efectivo Z</label>
+		    		<input type="text" id="efectivoz" name="efectivoz" placeholder="Efectivo Z" value="0" required onkeyup="sumz(); final()">
+		  		</li>
+		  		<li>
+		  			<label for="tarjetaz"><span aria-hidden="true" class="icon_currency_alt"></span> Tarjeta Z</label>
+		    		<input type="text" id="tarjetaz" name="tarjetaz" placeholder="Tarjeta Z" value="0" required onkeyup="sumz(); final()"> 
+		  		</li>
+		  		<li>
+		  			<label for="totalz"><span aria-hidden="true" class="icon_currency_alt"></span> Total Z</label>
+		    		<input type="text" id="totalz" name="totalz" placeholder="Total Z" required  readonly dif()> 
+		  		</li>
+		  		<br>
+		  		<br>
+		  		<br>
+		  		<br>
+		  		<li>
+		  			<label for="anticipada"><span aria-hidden="true" class="icon_currency_alt"></span> Anticipada</label>
+		    		<input type="text" id="anticipada" name="anticipada" placeholder="Anticipada" required>
+		  		</li>
+		  		<li>
+		  			<label for="diferencia"><span aria-hidden="true" class="icon_currency_alt"></span> Diferencia</label>
+		    		<input type="text" id="diferencia" name="diferencia" placeholder="Diferencia" required readonly>
+		  		</li>
+		  		<br>
+		  		<br>
+
+					  
+				  
+		  		<li>
+		  			<label for="camareros"><span aria-hidden="true" class="icon_comment"></span> Camareros</label>
+		    		<textarea name="camareros" id="camareros" cols="30" rows="10" placeholder="Camareros" required></textarea>
+		  		</li>
+		  		<li class="canvas-section">
+		  			<label for="canvas"><span aria-hidden="true" class="icon_pencil-edit"></span> Firma <small>(dibuja tu firma)</small></label>
+		  			<div class="show-canvas">
+		  				<canvas id="canvas"></canvas>
+		  				<input type="hidden" name="firma" id="signature-input">
+		  			</div>
+		  			<div class="canvas-bottom">
+		  				<button type="button" class="btn btn-reset"><span aria-hidden="true" class="icon_refresh"></span> Rehacer</button> <button type="button" id="save_canvas" class="btn btn-save" id="save"><span aria-hidden="true" class="icon_check_alt2"></span> Guardar</button>
+		  			</div>
+		  		</li>
+		  	</ul>
+		    <div class="text-center submit-form"></div>
+		  </form>
+		</div>
+
+	</div><!-- /content -->
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<script src="js/signature.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+document.getElementById('efectivo').value = '0';
+document.getElementById('tarjeta').value = '0';
+</script>
+
+   <script type="text/javascript">
+document.getElementById('efectivoz').value = '0';
+document.getElementById('tarjetaz').value = '0';
+</script>
+
+
+    <script type="text/javascript">
+			function final(){
+			var tot = parseInt(sum()) - parseInt(sumz());
+            document.getElementById('diferencia').value = tot;
+			}
+		
+        function sum() {
+            var efectivo = document.getElementById('efectivo').value;
+            var tarjeta = document.getElementById('tarjeta').value;
+            var result = parseFloat(efectivo) + parseFloat(tarjeta);
+            if (!isNaN(result)) {
+                document.getElementById('total').value = result;
+            
+			return result;
+           
+            }
+        }
+
+          function sumz() {
+            var efectivoz = document.getElementById('efectivoz').value;
+            var tarjetaz = document.getElementById('tarjetaz').value;
+            var resulta = parseFloat(efectivoz) + parseFloat(tarjetaz);
+            if (!isNaN(resulta)) {
+                document.getElementById('totalz').value = resulta;
+            
+			return resulta;
+            var tot = parseInt(sum()) - parseInt(resulta);
+            document.getElementById('diferencia').value = tot;
+            }
+        }
+
+		
+	
+
+
+
+    </script>
+
+	<script>
+	  function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+
+function showPreview1(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-2-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+
+	</script>
+   
+
+</body>
+</html>

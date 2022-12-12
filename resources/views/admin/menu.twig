@@ -1,0 +1,177 @@
+{% if auth.user.username == "sandrarubio" or auth.user.username == "yolandacortizas" or auth.user.username == "alex" %}
+<li>
+    <a href="{{ route('cajasamura.index') }}">
+        <div class="parent-icon"><i class='bi bi-journal-code'></i></div>
+        <div class="parent-menu">{{ lang.cajasamura_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasanden.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-check'></i></div>
+        <div class="parent-menu">{{ lang.cajasanden_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasatlantico57.index') }}">
+        <div class="parent-icon"><i class='bi bi-folder'></i></div>
+        <div class="parent-menu">{{ lang.cajasatlantico57_menu }}</div>
+    </a>
+</li>
+
+
+<li>
+    <a href="{{ route('cajasbrit.index') }}">
+        <div class="parent-icon"><i class='bi bi-hdd'></i></div>
+        <div class="parent-menu">{{ lang.cajasbrit_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasdux.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-data'></i></div>
+        <div class="parent-menu">{{ lang.cajasdux_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasinn.index') }}">
+        <div class="parent-icon"><i class='bi bi-code-square'></i></div>
+        <div class="parent-menu">{{ lang.cajasinn_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasmy.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-check'></i></div>
+        <div class="parent-menu">{{ lang.cajasmy_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasoceanico.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard'></i></div>
+        <div class="parent-menu">{{ lang.cajasoceanico_menu }}</div>
+    </a>
+</li>
+
+
+<li>
+    <a href="{{ route('cajaspelicano.index') }}">
+        <div class="parent-icon"><i class='bi bi-circle'></i></div>
+        <div class="parent-menu">{{ lang.cajaspelicano_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasplayaclub.index') }}">
+        <div class="parent-icon"><i class='bi bi-folder'></i></div>
+        <div class="parent-menu">{{ lang.cajasplayaclub_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasway.index') }}">
+        <div class="parent-icon"><i class='bi bi-collection'></i></div>
+        <div class="parent-menu">{{ lang.cajasway_menu }}</div>
+    </a>
+</li>
+
+
+{% elseif auth.user.username == "marisol" %}
+
+<li>
+    <a href="{{ route('cajasamura.index') }}">
+        <div class="parent-icon"><i class='bi bi-journal-code'></i></div>
+        <div class="parent-menu">{{ lang.cajasamura_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasbrit.index') }}">
+        <div class="parent-icon"><i class='bi bi-hdd'></i></div>
+        <div class="parent-menu">{{ lang.cajasbrit_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasdux.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-data'></i></div>
+        <div class="parent-menu">{{ lang.cajasdux_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasinn.index') }}">
+        <div class="parent-icon"><i class='bi bi-code-square'></i></div>
+        <div class="parent-menu">{{ lang.cajasinn_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasmy.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-check'></i></div>
+        <div class="parent-menu">{{ lang.cajasmy_menu }}</div>
+    </a>
+</li>
+
+
+<li>
+    <a href="{{ route('cajasway.index') }}">
+        <div class="parent-icon"><i class='bi bi-collection'></i></div>
+        <div class="parent-menu">{{ lang.cajasway_menu }}</div>
+    </a>
+</li>
+
+
+
+
+{% elseif auth.user.username == "mateo" %}
+
+<li>
+    <a href="{{ route('cajasplayaclub.index') }}">
+        <div class="parent-icon"><i class='bi bi-folder'></i></div>
+        <div class="parent-menu">{{ lang.cajasplayaclub_menu }}</div>
+    </a>
+</li>
+
+
+<li>
+    <a href="{{ route('cajasanden.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard-check'></i></div>
+        <div class="parent-menu">{{ lang.cajasanden_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasatlantico57.index') }}">
+        <div class="parent-icon"><i class='bi bi-folder'></i></div>
+        <div class="parent-menu">{{ lang.cajasatlantico57_menu }}</div>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('cajasoceanico.index') }}">
+        <div class="parent-icon"><i class='bi bi-clipboard'></i></div>
+        <div class="parent-menu">{{ lang.cajasoceanico_menu }}</div>
+    </a>
+</li>
+
+
+
+
+{% elseif auth.user.username == "sandra" %}
+
+<li>
+    <a href="{{ route('cajaspelicano.index') }}">
+        <div class="parent-icon"><i class='bi bi-circle'></i></div>
+        <div class="parent-menu">{{ lang.cajaspelicano_menu }}</div>
+    </a>
+</li>
+
+{% endif %}
+
+
+
+

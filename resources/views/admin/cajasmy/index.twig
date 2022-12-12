@@ -1,0 +1,384 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}
+{{ lang.cajasmy }}
+{% endblock %}
+
+{% block content %}
+
+{% if auth.user.username == "sandrarubio" or auth.user.username == "yolandacortizas" or auth.user.username == "marisol"
+or auth.user.username == "alex" %}
+<div class="page-wrapper">
+	<div class="page-content">
+		{% include 'partials/flash.twig' %}
+		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="breadcrumb-title pe-3">{{ lang.cajasmy }}</div>
+			<div class="ps-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0 p-0">
+						<li class="breadcrumb-item active" aria-current="page">
+							<a href="{{ route('cajasmy.create') }}" class="btn btn-outline-dark btn-sm">
+								<i class="bi bi-plus"></i>
+								{{ lang.add }}
+							</a>
+
+
+						</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="ms-auto">
+				<div class="btn-group">
+
+
+					<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+						<a class="dropdown-item" href="{{ route('cajasmy.export',{'type':'pdf'}) }}">
+							<i class="bi bi-file-pdf"></i>
+							{{ lang.pdf }}</a>
+						<a class="dropdown-item" href="{{ route('cajasmy.export',{'type':'xlsx'}) }}">
+							<i class="bi bi-file-excel"></i>
+							{{ lang.excel }}</a>
+						<a class="dropdown-item" href="{{ route('cajasmy.export',{'type':'csv'}) }}">
+							<i class="bi bi-file"></i>
+							{{ lang.csv }}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end breadcrumb-->
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card shadow-none border">
+					<div class="card-body">
+						<div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+							<div class="row">
+								<div class="col-sm-13">
+
+									<table cellspacing="5" cellpadding="5">
+										<tr>
+											<td>Desde:</td>
+											<td><input type="text" id="min" name="min"></td>
+										</tr>
+										<tr>
+											<td>Hasta:</td>
+											<td><input type="text" id="max" name="max"></td>
+										</tr>
+									</table>
+
+
+								</div>
+								<table id="datatable"
+									class="table table-bordered dt-responsive nowrap w-100 dataTable dtr-inline"
+									role="grid" aria-describedby="datatable_info">
+									<thead>
+										<tr>
+											<th>{{ lang.cajasmy_cb_barra }}</th>
+											<th>{{ lang.cajasmy_cb_fecha }}</th>
+											<th>{{ lang.cajasmy_cb_cambio }}</th>
+											<th>{{ lang.cajasmy_cb_efectivo }}</th>
+											<th>{{ lang.cajasmy_cb_tarjeta }}</th>
+											<th>{{ lang.cajasmy_cb_total }}</th>
+											<th>{{ lang.cajasmy_cb_efectivoz }}</th>
+											<th>{{ lang.cajasmy_cb_tarjetaz }}</th>
+											<th>{{ lang.cajasmy_cb_totalz }}</th>
+											<th>{{ lang.cajasmy_cb_diferencia }}</th>
+											<th>{{ lang.cajasmy_cb_anticipada }}</th>
+											<th>{{ lang.cajasmy_cb_camareros }}</th>
+											<th style="width: 10%">{{ lang.actions }}</th>
+										</tr>
+
+									</thead>
+
+									<tfoot>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+
+									</tfoot>
+
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end col -->
+	</div>
+	<!-- end row -->
+</div>
+</div>{% endif %}{% endblock %}{% block innerjs %}
+<script type="text/javascript">
+
+
+	var minDate,
+		maxDate;
+	var currentDate = new Date()
+	var day = currentDate.getDate()
+	var month = currentDate.getMonth() + 1
+	var year = currentDate.getFullYear()
+
+	var d = day + "-" + month + "-" + year;
+
+	var dataTable = $('#datatable').dataTable({
+
+		language: {
+			"decimal": "",
+			"emptyTable": "No hay información",
+			"info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+			"infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+			"infoFiltered": "(Filtrado de _MAX_ total entradas)",
+			"infoPostFix": "",
+			"thousands": ",",
+			"lengthMenu": "Mostrar _MENU_ Entradas",
+			"loadingRecords": "Cargando...",
+			"processing": "Procesando...",
+			"search": "Buscar:",
+			"zeroRecords": "Sin resultados encontrados",
+			"paginate": {
+				"first": "Primero",
+				"last": "Ultimo",
+				"next": "Siguiente",
+				"previous": "Anterior"
+			}
+		},
+		exportOptions: {
+			rows: ':visible'
+		},
+		"footerCallback": function (row, data, start, end, display) {
+			var api = this.api(),
+				data;
+
+			// converting to interger to find total
+			var intVal = function (i) {
+				return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+			};
+
+			// computado de la suma total de cada col
+			var monTotal1 = api.column(2).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var monTotal = api.column(3).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+
+			var tueTotal = api.column(4).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+
+			var wedTotal = api.column(5).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+
+			var thuTotal = api.column(6).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+
+			var friTotal = api.column(7).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var satTotal = api.column(8).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var sunTotal = api.column(9).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var sunTotal1 = api.column(10).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var sinTotal1 = api.column(11).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+			var sanTotal1 = api.column(12).data().reduce(function (a, b) {
+				return intVal(a) + intVal(b);
+			}, 0);
+
+
+			// Update footer by showing the total with the reference of the column index
+			$(api.column(0).footer()).html('Total (€): ');
+			var numFormat = $.fn.dataTable.render.number(',', '.', 2).display;
+			$(api.column(2).footer()).html(numFormat(monTotal1) + ' €');
+			$(api.column(3).footer()).html(numFormat(monTotal) + ' €');
+			$(api.column(4).footer()).html(numFormat(tueTotal) + ' €');
+			$(api.column(5).footer()).html(numFormat(wedTotal) + ' €');
+			$(api.column(6).footer()).html(numFormat(thuTotal) + ' €');
+			$(api.column(7).footer()).html(numFormat(friTotal) + ' €');
+			$(api.column(8).footer()).html(numFormat(satTotal) + ' €');
+			$(api.column(9).footer()).html(numFormat(sunTotal) + ' €');
+			$(api.column(10).footer()).html(numFormat(sunTotal1) + ' €');
+
+
+		},
+		processing: true,
+
+		serverSide: true,
+		iDisplayLength: 25,
+		"order": [
+			[0, "asc"]
+		],
+		"ajax": {
+			'url': "{{ route('cajasmy.datatable') }}",
+			'data': function (data) {
+				data.searchByFromdate = $('#min').val().split("-").reverse().join("-");
+				data.searchByTodate = $('#max').val().split("-").reverse().join("-");
+			}
+
+		},
+		columns: [
+			{
+				data: 'cb_barra'
+			},
+			{
+				data: 'cb_fecha',
+				render: function (data, type, row) {
+
+					return moment(data).format("DD-MM-YYYY"); // you get "16/05/2018"
+				}
+			},
+			{
+				data: 'cb_cambio',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			},
+			{
+				data: 'cb_efectivo',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_tarjeta',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_total',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_efectivoz',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_tarjetaz',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_totalz',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			}, {
+				data: 'cb_diferencia',
+
+				render: function (data, type) {
+					var number = $.fn.dataTable.render.number(',', '.', 2, '', ' €').display(data);
+
+					// Número en rojo si DESCUADRE ALTO
+					if (type === 'display') {
+
+						if (data < 0) {
+							color = 'red';
+						} else {
+							color = 'black';
+						}
+
+						return '<span style="color:' + color + '">' + number + '</span>';
+					}
+
+					return number;
+				}
+			},
+			// Sacar símbolo de euro y formateado
+			{
+				data: 'cb_anticipada',
+				render: $.fn.dataTable.render.number(',', '.', 2, '', ' €')
+			},
+			// Saltos de línea para camareros
+			{
+				data: 'cb_camareros',
+				render: function (data) {
+
+					return data.replace(new RegExp("\\r\\n", "g"), "<br />");
+
+				}
+			}, {
+				data: 'action',
+				orderable: false,
+				searchable: false
+			}
+		],
+
+		dom: 'lfBrtip',
+		lengthMenu: [
+			0,
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			20,
+			50,
+			100,
+			200,
+			500
+		],
+
+
+		buttons: [
+			{
+				extend: 'excel',
+				footer: true,
+				text: 'Descargar Excel',
+				title: 'Cajas-MY-' + d,
+				className: 'btn-primary',
+				exportOptions: {
+					columns: [
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11
+					]
+				}
+			},
+			'pdf'
+		]
+	});
+
+	// Custom filtering function which will search data in column four between two values
+	$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+		var min = minDate.val();
+		var max = maxDate.val();
+		var date = new Date(data[4]);
+
+		if ((min === null && max === null) || (min === null && date <= max) || (min <= date && max === null) || (min <= date && date <= max)) {
+			return true;
+		}
+		return false;
+	});
+
+	$(document).ready(function () { // Create date inputs
+		minDate = new DateTime($('#min'), { format: 'DD-MM-YYYY' });
+		maxDate = new DateTime($('#max'), { format: 'DD-MM-YYYY' });
+
+		// DataTables initialisation
+		var table = $('#datatable').DataTable();
+
+		// Refilter the table
+		$('#min, #max').on('change', function () {
+			table.draw();
+		});
+	});</script>{% endblock %}

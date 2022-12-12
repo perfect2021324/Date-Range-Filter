@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ lang.cajasanden }}</title>
+    {% include 'partials/reportcss.twig' %}
+</head>
+<body>
+<h4>{{ lang.cajasanden }}</h4>
+<div class="vItems">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ lang.cajasanden_cb_barra }}</th>                 
+        <th>{{ lang.cajasanden_cb_fecha }}</th>                 
+        <th>{{ lang.cajasanden_cb_cambio }}</th>                 
+        <th>{{ lang.cajasanden_cb_efectivo }}</th>                 
+        <th>{{ lang.cajasanden_cb_tarjeta }}</th>                 
+        <th>{{ lang.cajasanden_cb_total }}</th>                 
+        <th>{{ lang.cajasanden_cb_efectivoz }}</th>                 
+        <th>{{ lang.cajasanden_cb_tarjetaz }}</th>                 
+        <th>{{ lang.cajasanden_cb_totalz }}</th>                 
+        <th>{{ lang.cajasanden_cb_diferencia }}</th>                 
+        <th>{{ lang.cajasanden_cb_anticipada }}</th>                 
+        <th>{{ lang.cajasanden_cb_camareros }}</th>                 
+        
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in cajasanden %}
+            <tr>
+                <td>{{ row.cb_barra }}</td>              
+            <td>{{ row.cb_fecha }}</td>              
+            <td>{{ row.cb_cambio }}</td>              
+            <td>{{ row.cb_efectivo }}</td>              
+            <td>{{ row.cb_tarjeta }}</td>              
+            <td>{{ row.cb_total }}</td>              
+            <td>{{ row.cb_efectivoz }}</td>              
+            <td>{{ row.cb_tarjetaz }}</td>              
+            <td>{{ row.cb_totalz }}</td>              
+            <td>{{ row.cb_diferencia }}</td>              
+            <td>{{ row.cb_anticipada }}</td>              
+            <td>{{ row.cb_camareros }}</td>              
+            
+            </tr>
+        {% endfor  %}
+        </tbody>
+    </table>
+</div>
+</body>

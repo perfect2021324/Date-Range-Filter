@@ -1,0 +1,186 @@
+body {
+background: url(../images/bg.jpg) no-repeat center #f491b0;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#content {
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+h2 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.separator {
+    background: #dc2080;
+    width: 30px;
+    height: 2px;
+    margin: 0 auto;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+label span {
+    color: #dc2080;
+}
+
+input[type=text], input[type=email], input[type=file], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border: 1px solid #dc2080;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    outline: none;
+}
+
+  .formbold-file-input input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .formbold-file-input img {
+  width:100%;
+  display:none;
+  margin-bottom:30px;
+}
+
+
+
+  .formbold-file-input label {
+    position: relative;
+    border: 1px dashed #e0e0e0;
+    border-radius: 6px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .formbold-browse {
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    display: inline-block;
+    padding: 8px 28px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+
+
+
+textarea {
+    resize: none;
+}
+
+button[type=submit] {
+    background-color: #dc2080;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button[type=submit]:hover {
+    background-color: #8c1a54;
+}
+.canvas-section {
+
+}
+.show-canvas {
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    resize: vertical;
+    height: 200px;
+    cursor: crosshair;
+    border: 1px solid #dc2080;
+    margin-bottom: 1px;
+}
+#canvas {
+    width: 100%;
+    height: 200px;
+    cursor: crosshair;
+}
+.canvas-bottom {
+    text-align: center;
+    border: 1px solid #dc2080;
+    padding: 15px 0 10px 0;
+    margin-bottom: 20px;
+}
+.btn {
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    outline: none;
+}
+.btn-reset {
+    background: transparent;
+    color: #dc90b7;
+}
+.btn-save {
+    background: transparent;
+    color: #dc2080;
+}
+.alert {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    max-width: 520px;
+    margin: 15px auto;
+    border-radius: 4px;
+    color: #fff;
+    position: relative;
+}
+.alert span {
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+    font-size: 19px;
+}
+.alert-success {
+    background: #3cad3f;
+}
+.alert-error {
+    background: #ad3131;
+}
+
+@media (max-width: 414px) {
+    body {
+        background-image: none !important;
+    }
+}

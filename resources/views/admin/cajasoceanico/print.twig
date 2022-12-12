@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ lang.cajasoceanico }}</title>
+    {% include 'partials/reportcss.twig' %}
+</head>
+<body>
+<h4>{{ lang.cajasoceanico }}</h4>
+<div class="vItems">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ lang.cajasoceanico_cb_barra }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_fecha }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_cambio }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_efectivo }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_tarjeta }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_total }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_efectivoz }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_tarjetaz }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_totalz }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_diferencia }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_anticipada }}</th>                 
+        <th>{{ lang.cajasoceanico_cb_camareros }}</th>                 
+        
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in cajasoceanico %}
+            <tr>
+                <td>{{ row.cb_barra }}</td>              
+            <td>{{ row.cb_fecha }}</td>              
+            <td>{{ row.cb_cambio }}</td>              
+            <td>{{ row.cb_efectivo }}</td>              
+            <td>{{ row.cb_tarjeta }}</td>              
+            <td>{{ row.cb_total }}</td>              
+            <td>{{ row.cb_efectivoz }}</td>              
+            <td>{{ row.cb_tarjetaz }}</td>              
+            <td>{{ row.cb_totalz }}</td>              
+            <td>{{ row.cb_diferencia }}</td>              
+            <td>{{ row.cb_anticipada }}</td>              
+            <td>{{ row.cb_camareros }}</td>              
+            
+            </tr>
+        {% endfor  %}
+        </tbody>
+    </table>
+</div>
+</body>
